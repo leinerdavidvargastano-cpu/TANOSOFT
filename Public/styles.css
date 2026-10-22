@@ -64,6 +64,97 @@ a { color: inherit; }
 
 .seccion { padding: 5rem 0; }
 
+/* ---------- BOTÓN PRINCIPAL ---------- */
+.boton {
+  display: inline-block;
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;            /* bordes totalmente redondeados */
+  background: var(--acento);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.boton:hover {
+  transform: translateY(-2px);                       /* sube un poco */
+  box-shadow: 0 6px 20px rgba(161, 23, 53, 0.5);     /* brillo rojo vino */
+}
+
+/* ---------- FOCO VISIBLE (accesibilidad) ---------- */
+/* Cuando alguien navega con el teclado (Tab), se ve claramente dónde está.
+   :focus-visible solo aparece con teclado, no al hacer clic con el mouse. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--blanco-rosado);
+  outline-offset: 3px;
+}
+
+/* ---------- BARRA DE NAVEGACIÓN ---------- */
+.barra {
+  position: fixed;     /* se queda pegada arriba aunque se desplace la página */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;        /* siempre por encima del resto del contenido */
+  background: rgba(26, 26, 26, 0.7);          /* gris oscuro semitransparente */
+  backdrop-filter: blur(10px);                /* difumina lo que pasa por detrás */
+  -webkit-backdrop-filter: blur(10px);        /* versión para Safari */
+  border-bottom: 1px solid rgba(207, 204, 205, 0.12);
+}
+
+.barra-interior {
+  display: flex;
+  align-items: center;             /* centra verticalmente */
+  justify-content: space-between;  /* logo a la izquierda, menú a la derecha */
+  height: 4.5rem;
+}
+
+/* ---------- LOGOTIPO ---------- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.12em;   /* separa las letras, da aspecto de marca */
+}
+.logo-marca {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 10px;
+  /* degradado en diagonal entre dos tonos vino */
+  background: linear-gradient(135deg, var(--rojo-vino), var(--vino-oscuro));
+  font-size: 0.9rem;
+  letter-spacing: 0;
+}
+.logo-texto span { font-weight: 300; }   /* "SOFT" más delgado que "TANO" */
+
+/* ---------- MENÚ ---------- */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  list-style: none;   /* quita los puntos de la lista */
+}
+
+/* :not(.boton) = todos los enlaces EXCEPTO el botón "Crear mi página web" */
+.menu a:not(.boton) {
+  text-decoration: none;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;   /* línea invisible que aparecerá al pasar el mouse */
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.menu a:not(.boton):hover {
+  color: var(--texto);
+  border-color: var(--acento);
+}
+
 
 /* ---------- 4. MUESTRA DE PALETA (TEMPORAL) ---------- */
 /* Solo para comprobar que los colores se ven bien. La borramos en el siguiente paso. */

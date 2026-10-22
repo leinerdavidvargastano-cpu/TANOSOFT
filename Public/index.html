@@ -13,33 +13,31 @@
 </head>
 <body>
 
-  <!-- FASE 2: aquí irá la barra de navegación -->
+   <header class="barra">
+    <!-- aria-label: le dice a los lectores de pantalla qué es esta navegación -->
+    <nav class="contenedor barra-interior" aria-label="Navegación principal">
 
-  <main>
-    <!-- FASE 3: aquí irá el hero (la primera pantalla) -->
+      <!-- Logotipo: un monograma "TS" más el nombre. Es un enlace que lleva al inicio -->
+      <a href="#inicio" class="logo" aria-label="TANOSOFT, ir al inicio">
+        <!-- aria-hidden: el lector de pantalla se salta el monograma y lee solo el nombre -->
+        <span class="logo-marca" aria-hidden="true">TS</span>
+        <span class="logo-texto">TANO<span>SOFT</span></span>
+      </a>
 
-    <!-- TEMPORAL: muestra de la paleta -->
-    <section class="seccion">
-      <div class="contenedor">
-        <h1>TANOSOFT</h1>
-        <p>Desarrollamos soluciones, construimos futuro.</p>
+      <!-- Lista de enlaces. Cada href="#algo" apunta a una sección con ese id -->
+      <ul class="menu" id="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#tecnologias">Tecnologías</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#contacto" class="boton">Crear mi página web</a></li>
+      </ul>
 
-        <div class="paleta">
-          <!-- style="background: ..." pinta cada cuadro con una variable de la paleta -->
-          <div class="muestra" style="background: var(--vino-oscuro)">Vino oscuro</div>
-          <div class="muestra" style="background: var(--rojo-vino)">Rojo vino</div>
-          <div class="muestra" style="background: var(--negro)">Negro</div>
-          <div class="muestra" style="background: var(--gris-oscuro)">Gris oscuro</div>
-          <div class="muestra" style="background: var(--blanco-rosado); color: #000">Blanco rosado</div>
-          <div class="muestra" style="background: var(--gris-claro); color: #000">Gris claro</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FASES 4 a 10: aquí irán servicios, planes, proyectos, etc. -->
-  </main>
-
-  <!-- FASE 11: aquí irá el footer -->
+    </nav>
+  </header>
 
   <script src="script.js"></script>
 </body>
