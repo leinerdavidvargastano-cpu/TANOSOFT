@@ -521,3 +521,227 @@ button:focus-visible {
   .cursor { animation: none; }
   .ventana-codigo { transition: none; }
 }
+
+
+/* ---------- ENCABEZADO DE SECCIÓN (se reutiliza en todas las secciones) ---------- */
+.encabezado-seccion { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+
+/* La etiqueta pequeña sobre el título. Usa el tono claro porque el rojo vino
+   original no tiene suficiente contraste como color de texto. */
+.etiqueta {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: var(--acento-claro);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.encabezado-seccion h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.encabezado-seccion p { color: var(--texto-suave); }
+
+/* ---------- TARJETAS DE SERVICIOS ---------- */
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));   /* 3 columnas iguales */
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.6rem;
+  background: linear-gradient(160deg, rgba(94, 1, 20, 0.28), rgba(26, 26, 26, 0.6));
+  border: 1px solid rgba(207, 204, 205, 0.14);
+  border-radius: var(--radio);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.tarjeta:hover {
+  transform: translateY(-6px);
+  border-color: rgba(161, 23, 53, 0.8);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 40px rgba(161, 23, 53, 0.18);
+}
+
+/* El cuadro del icono */
+.tarjeta-icono {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--rojo-vino), var(--vino-oscuro));
+  color: #fff;
+}
+/* Los iconos son líneas, no rellenos. stroke: currentColor las pinta del color del texto. */
+.tarjeta-icono svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tarjeta h3 { font-size: 1.15rem; line-height: 1.3; }
+/* flex: 1 hace que el párrafo ocupe todo el espacio libre: así el enlace queda
+   siempre abajo, alineado en todas las tarjetas aunque el texto tenga distinto largo */
+.tarjeta p { flex: 1; color: var(--texto-suave); font-size: 0.95rem; }
+
+.tarjeta-enlace {
+  align-self: flex-start;   /* no se estira a todo el ancho de la tarjeta */
+  padding-bottom: 0.1rem;
+  border-bottom: 2px solid var(--acento);
+  color: var(--texto);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+/* La flecha se desliza un poco a la derecha al pasar el mouse */
+.tarjeta-enlace span { display: inline-block; transition: transform 0.2s ease; }
+.tarjeta-enlace:hover span { transform: translateX(4px); }
+
+/* La séptima tarjeta (la última) ocupa todo el ancho de la fila: evita que
+   quede sola en una esquina cuando son 7 elementos */
+.tarjeta:last-child { grid-column: 1 / -1; }
+.tarjeta:last-child p { max-width: 60ch; }
+
+/* Tablet: 2 columnas. Celular: 1 columna. */
+@media (max-width: 900px) {
+  .servicios-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .servicios-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- APARECER AL DESPLAZARSE ---------- */
+/* Solo se aplica si JavaScript está activo (la clase "js" del <html>).
+   Usamos la propiedad "translate" en vez de "transform", para no pelearnos con el
+   efecto hover de las tarjetas, que sí usa "transform". */
+.js .revelar {
+  opacity: 0;
+  translate: 0 24px;
+  /* Cada propiedad lleva su propio retardo. --i (0, 1, 2...) escalona las tarjetas:
+     la 1ª aparece al instante, la 2ª 80 ms después, y así. Solo opacity y translate se
+     retrasan; el hover de la tarjeta responde de inmediato. */
+  transition:
+    opacity 0.6s ease calc(var(--i, 0) * 80ms),
+    translate 0.6s ease calc(var(--i, 0) * 80ms),
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+/* Cuando JavaScript le agrega la clase "visible", llega a su posición normal */
+.js .revelar.visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Con movimiento reducido, todo aparece de una, sin animación */
+@media (prefers-reduced-motion: reduce) {
+  .js .revelar { opacity: 1; translate: none; transition: none; }
+}
+
+
+
+/* ---------- PLANES ---------- */
+.planes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;   /* las tres tarjetas miden lo mismo de alto */
+}
+
+.plan {
+  position: relative;     /* para colocar la insignia "Recomendado" encima de la tarjeta */
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 2rem 1.6rem 1.6rem;
+  background: linear-gradient(160deg, rgba(94, 1, 20, 0.22), rgba(26, 26, 26, 0.7));
+  border: 1px solid rgba(207, 204, 205, 0.14);
+  border-radius: var(--radio);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.plan:hover {
+  transform: translateY(-6px);
+  border-color: rgba(161, 23, 53, 0.8);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.plan-numero {
+  color: var(--acento-claro);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.plan h3 { font-size: 1.6rem; line-height: 1.2; }
+.plan-para { color: var(--texto-suave); font-size: 0.95rem; }
+
+/* Línea del precio, separada con bordes arriba y abajo */
+.plan-precio {
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(207, 204, 205, 0.14);
+  border-bottom: 1px solid rgba(207, 204, 205, 0.14);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* flex: 1 empuja el botón al fondo: los tres botones quedan alineados
+   aunque las listas tengan distinta cantidad de elementos */
+.plan-lista { flex: 1; display: grid; gap: 0.6rem; list-style: none; font-size: 0.92rem; }
+.plan-lista li { position: relative; padding-left: 1.6rem; color: var(--texto-suave); }
+/* La palomita antes de cada ítem, generada con CSS */
+.plan-lista li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--acento-claro);
+  font-weight: 700;
+}
+
+.plan .boton { display: block; text-align: center; margin-top: 0.4rem; }
+
+/* ----- Plan recomendado: se ve más grande, con borde y resplandor vino ----- */
+.plan-recomendado {
+  background: linear-gradient(160deg, rgba(161, 23, 53, 0.35), rgba(26, 26, 26, 0.8));
+  border: 2px solid var(--acento);
+  box-shadow: 0 0 50px rgba(161, 23, 53, 0.25);
+  transform: scale(1.03);
+}
+.plan-recomendado:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(161, 23, 53, 0.35);
+}
+
+/* La insignia "Recomendado": pegada al borde superior, centrada */
+.plan-insignia {
+  position: absolute;
+  top: -0.85rem;
+  left: 50%;
+  translate: -50% 0;      /* se centra con "translate" para no chocar con el transform del hover */
+  padding: 0.25rem 0.9rem;
+  background: var(--acento);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Tablet y celular: una columna, sin agrandar el recomendado */
+@media (max-width: 900px) {
+  .planes-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+  .plan-recomendado,
+  .plan-recomendado:hover { transform: none; }
+  .plan-recomendado:hover { transform: translateY(-6px); }
+}

@@ -269,3 +269,45 @@ secciones.forEach(function (seccion) {
   // ----- 5. ARRANCAR -----
   escribir("index.html");
 })();
+
+
+
+// ---------- APARECER AL DESPLAZARSE ----------
+// Cualquier elemento con la clase "revelar" aparece al entrar en pantalla.
+const elementosRevelar = document.querySelectorAll(".revelar");
+
+const observadorRevelar = new IntersectionObserver(function (entradas, observador) {
+  entradas.forEach(function (entrada) {
+    if (!entrada.isIntersecting) return;
+
+    entrada.target.classList.add("visible");
+    // Ya apareció: dejamos de vigilarlo. Así la animación ocurre una sola vez.
+    observador.unobserve(entrada.target);
+  });
+}, {
+  threshold: 0.15   // se activa cuando se ve al menos el 15% del elemento
+});
+
+elementosRevelar.forEach(function (elemento) {
+  observadorRevelar.observe(elemento);
+});
+
+
+
+// ---------- PLANES: COMPLETAR VALORES DESDE config.js ----------
+(function () {
+  // Si config.js no cargó, dejamos los textos por defecto y no hacemos nada
+  if (typeof CONFIG === "undefined") return;
+
+  // Todos los elementos que tengan data-plan y data-campo, por ejemplo:
+  // <p data-plan="basico" data-campo="precio">
+  document.querySelectorAll("[data-plan][data-campo]").forEach(function (elemento) {
+    // dataset.plan lee data-plan ("basico"); dataset.campo lee data-campo ("precio")
+    const plan = CONFIG.planes[elemento.dataset.plan];
+    const valor = plan && plan[elemento.dataset.campo];
+
+    // Si hay un valor escrito en config.js, reemplaza el texto por defecto.
+    // Si está vacío (""), se queda el texto que ya trae el HTML.
+    if (valor) elemento.textContent = valor;
+  });
+})();

@@ -8,8 +8,9 @@
   <!-- Lo que aparece en la pestaña y en los resultados de Google -->
   <title>TANOSOFT | Desarrollamos soluciones, construimos futuro</title>
   <meta name="description" content="TANOSOFT crea páginas web modernas, rápidas y funcionales para empresas y emprendedores.">
-
+  
   <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
    <header class="barra">
@@ -116,13 +117,180 @@
       </ul>
     </section>
 
-    <section class="seccion marcador" id="servicios">
-      <div class="contenedor"><h2>Servicios</h2><p>Aquí irán las tarjetas de servicios.</p></div>
+        <!-- SERVICIOS -->
+    <section class="seccion" id="servicios">
+      <div class="contenedor">
+
+        <div class="encabezado-seccion revelar">
+          <span class="etiqueta">Servicios</span>
+          <h2>Lo que podemos construir para tu negocio</h2>
+          <p>Desde tu primera página web hasta sistemas a la medida. Cuéntanos tu idea y definimos juntos el alcance.</p>
+        </div>
+
+        <!-- --i: el número de cada tarjeta. El CSS lo usa para que aparezcan una tras otra -->
+        <ul class="servicios-grid">
+
+          <li class="tarjeta revelar" style="--i:0">
+            <span class="tarjeta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+            </span>
+            <h3>Desarrollo de páginas web</h3>
+            <p>Sitios corporativos, páginas de presentación, landing pages y páginas para pequeños negocios.</p>
+            <!-- data-servicio: más adelante el formulario leerá esto para preseleccionar el tipo de proyecto -->
+            <a href="#contacto" class="tarjeta-enlace" data-servicio="Desarrollo de páginas web"
+               aria-label="Solicitar información sobre desarrollo de páginas web">Solicitar información <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="tarjeta revelar" style="--i:1">
+            <span class="tarjeta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M3 4h2.5l2.2 11h10.3l2-7.5H6.2"/></svg>
+            </span>
+            <h3>Tiendas online</h3>
+            <p>Experiencias de comercio electrónico para mostrar productos y facilitar las ventas por internet.</p>
+            <a href="#contacto" class="tarjeta-enlace" data-servicio="Tiendas online"
+               aria-label="Solicitar información sobre tiendas online">Solicitar información <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="tarjeta revelar" style="--i:2">
+            <span class="tarjeta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </span>
+            <h3>Desarrollo frontend</h3>
+            <p>Interfaces visuales atractivas, interactivas, rápidas y adaptables a computadoras, tabletas y celulares.</p>
+            <a href="#contacto" class="tarjeta-enlace" data-servicio="Desarrollo frontend"
+               aria-label="Solicitar información sobre desarrollo frontend">Solicitar información <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="tarjeta revelar" style="--i:3">
+            <span class="tarjeta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.01M7 17.5h.01"/></svg>
+            </span>
+            <h3>Desarrollo backend</h3>
+            <p>Sistemas que procesan información, gestionan usuarios, conectan servicios y permiten que una aplicación funcione detrás de su interfaz.</p>
+            <a href="#contacto" class="tarjeta-enlace" data-servicio="Desarrollo backend"
+               aria-label="Solicitar información sobre desarrollo backend">Solicitar información <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="tarjeta revelar" style="--i:4">
+            <span class="tarjeta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+            </span>
+            <h3>Bases de datos</h3>
+            <p>Organización, almacenamiento y consulta de información mediante bases de datos SQL.</p>
+            <a href="#contacto" class="tarjeta-enlace" data-servicio="Bases de datos"
+               aria-label="Solicitar información sobre bases de datos">Solicitar información <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="tarjeta revelar" style="--i:5">
+            <span class="tarjeta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6h7M6 8.5V12a3 3 0 0 0 3 3h6.5"/></svg>
+            </span>
+            <h3>Automatización de procesos</h3>
+            <p>Flujos automatizados para reducir tareas repetitivas e integrar herramientas mediante n8n.</p>
+            <a href="#contacto" class="tarjeta-enlace" data-servicio="Automatización de procesos"
+               aria-label="Solicitar información sobre automatización de procesos">Solicitar información <span aria-hidden="true">→</span></a>
+          </li>
+
+          <li class="tarjeta revelar" style="--i:6">
+            <span class="tarjeta-icono" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>
+            </span>
+            <h3>Mantenimiento y optimización</h3>
+            <p>Actualización, corrección de errores y mejora continua de sitios web existentes.</p>
+            <a href="#contacto" class="tarjeta-enlace" data-servicio="Mantenimiento y optimización"
+               aria-label="Solicitar información sobre mantenimiento y optimización">Solicitar información <span aria-hidden="true">→</span></a>
+          </li>
+
+        </ul>
+      </div>
     </section>
 
-    <section class="seccion marcador" id="planes">
-      <div class="contenedor"><h2>Planes</h2><p>Aquí irán los tres planes.</p></div>
+    
+
+        <!-- PLANES -->
+    <section class="seccion" id="planes">
+      <div class="contenedor">
+
+        <div class="encabezado-seccion revelar">
+          <span class="etiqueta">Planes</span>
+          <h2>Elige el punto de partida para tu proyecto</h2>
+          <p>Tres caminos según lo que tu negocio necesita hoy. Los alcances exactos se definen contigo en la propuesta.</p>
+        </div>
+
+        <div class="planes-grid">
+
+          <!-- PLAN 01: BÁSICO -->
+          <article class="plan revelar" style="--i:0">
+            <p class="plan-numero">Plan 01</p>
+            <h3>Básico</h3>
+            <p class="plan-para">Pensado para emprendedores y negocios que necesitan comenzar su presencia digital.</p>
+
+            <!-- data-plan y data-campo: JavaScript busca el valor en config.js.
+                 El texto de adentro es el que se ve mientras no haya un valor configurado -->
+            <p class="plan-precio" data-plan="basico" data-campo="precio">Consultar precio</p>
+
+            <ul class="plan-lista">
+              <li>Página web informativa</li>
+              <li>Diseño adaptable a móviles</li>
+              <li>Presentación de servicios o productos</li>
+              <li>Información de contacto</li>
+              <li>Integración con WhatsApp</li>
+              <li>Formulario de contacto sencillo</li>
+            </ul>
+
+            <!-- data-plan-interes: en la fase del formulario se usará para preseleccionar el plan -->
+            <a href="#contacto" class="boton boton-secundario" data-plan-interes="Básico">Elegir plan básico</a>
+          </article>
+
+          <!-- PLAN 02: ESTÁNDAR (recomendado) -->
+          <article class="plan plan-recomendado revelar" style="--i:1">
+            <span class="plan-insignia">Recomendado</span>
+            <p class="plan-numero">Plan 02</p>
+            <h3>Estándar</h3>
+            <p class="plan-para">Pensado para empresas que necesitan una presencia digital más completa.</p>
+
+            <p class="plan-precio" data-plan="estandar" data-campo="precio">Consultar precio</p>
+
+            <ul class="plan-lista">
+              <li>Todo lo incluido en el plan básico, según las condiciones definidas</li>
+              <li>Más páginas o secciones</li>
+              <li>Diseño personalizado</li>
+              <li>Galería de imágenes o portafolio</li>
+              <li>Formularios ampliados</li>
+              <li>Optimización SEO básica</li>
+              <li>Integraciones adicionales según el proyecto</li>
+            </ul>
+
+            <a href="#contacto" class="boton" data-plan-interes="Estándar">Elegir plan estándar</a>
+          </article>
+
+          <!-- PLAN 03: AVANZADO -->
+          <article class="plan revelar" style="--i:2">
+            <p class="plan-numero">Plan 03</p>
+            <h3>Avanzado</h3>
+            <p class="plan-para">Pensado para negocios que necesitan funcionalidades más específicas.</p>
+
+            <p class="plan-precio" data-plan="avanzado" data-campo="precio">Consultar precio</p>
+
+            <ul class="plan-lista">
+              <li>Diseño personalizado avanzado</li>
+              <li>Funcionalidades interactivas</li>
+              <li>Integración con API</li>
+              <li>Gestión de información mediante bases de datos, cuando corresponda</li>
+              <li>Panel administrativo o funcionalidades adicionales según el alcance</li>
+              <li>Automatizaciones mediante n8n cuando sean necesarias</li>
+              <li>Posibilidad de desarrollar sistemas personalizados</li>
+            </ul>
+
+            <a href="#contacto" class="boton boton-secundario" data-plan-interes="Avanzado">Solicitar propuesta avanzada</a>
+          </article>
+
+        </div>
+      </div>
     </section>
+
+
+
 
     <section class="seccion marcador" id="proyectos">
       <div class="contenedor"><h2>Proyectos</h2><p>Aquí irá la galería de proyectos.</p></div>
@@ -140,7 +308,7 @@
       <div class="contenedor"><h2>Contacto</h2><p>Aquí irá el formulario.</p></div>
     </section>
   </main>
-
+    <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
