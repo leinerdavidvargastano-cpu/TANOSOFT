@@ -243,3 +243,29 @@ button:focus-visible {
   .menu a:not(.boton) { display: block; padding: 0.9rem 0; }
   .menu .boton { display: block; text-align: center; }
 }
+
+
+
+/* ---------- BARRA: ESTADO AL DESPLAZARSE ---------- */
+/* Al hacer scroll, JavaScript le agrega la clase "con-fondo" a la barra.
+   Se vuelve más opaca y gana una sombra, para que el contenido que pasa
+   por detrás no estorbe la lectura. */
+.barra { transition: background 0.3s ease, box-shadow 0.3s ease; }
+.barra.con-fondo {
+  background: rgba(26, 26, 26, 0.92);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- ENLACE ACTIVO ---------- */
+/* Mismo aspecto que el hover, pero permanente en la sección donde estás */
+.menu a:not(.boton).activo {
+  color: var(--texto);
+  border-color: var(--acento);
+}
+
+/* ---------- SECCIONES PROVISIONALES (TEMPORAL) ---------- */
+/* min-height: cada marcador ocupa al menos el 80% de la pantalla, para poder desplazarse */
+.marcador { min-height: 80vh; padding-top: 7rem; }
+.marcador:nth-child(even) { background: var(--fondo-profundo); }  /* alterna el fondo para distinguirlas */
+.marcador h2 { margin-bottom: 0.5rem; }
+.marcador p { color: var(--texto-suave); }
