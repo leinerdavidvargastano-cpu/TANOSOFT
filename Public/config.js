@@ -7,25 +7,25 @@
 const CONFIG = {
   planes: {
     basico: {
-      precio: "",           // Ejemplo: "Desde $XXX.XXX COP"
-      plazo: "",            // Tiempo de entrega
-      dominioHosting: "",   // Si incluye dominio y hosting
-      mantenimiento: "",    // Si incluye mantenimiento y por cuánto tiempo
-      revisiones: ""        // Cuántas rondas de cambios incluye
+      precio: "$459.000 COP",           // Ejemplo: "Desde $XXX.XXX COP"
+      plazo: "15 dias",            // Tiempo de entrega
+      dominioHosting: "no",   // Si incluye dominio y hosting
+      mantenimiento: "no",    // Si incluye mantenimiento y por cuánto tiempo
+      revisiones: "si"        // Cuántas rondas de cambios incluye
     },
     estandar: {
-      precio: "",
-      plazo: "",
-      dominioHosting: "",
-      mantenimiento: "",
-      revisiones: ""
+      precio: "$1.290.000 COP",
+      plazo: "1 mes",
+      dominioHosting: "no",
+      mantenimiento: "si",
+      revisiones: "si"
     },
     avanzado: {
-      precio: "",
-      plazo: "",
-      dominioHosting: "",
-      mantenimiento: "",
-      revisiones: ""
+      precio: "$2.490.000 COP",
+      plazo: "3 meces",
+      dominioHosting: "si",
+      mantenimiento: "si",
+      revisiones: "si"
     }
   }
 };
