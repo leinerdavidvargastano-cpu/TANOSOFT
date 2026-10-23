@@ -22,7 +22,22 @@
         <!-- aria-hidden: el lector de pantalla se salta el monograma y lee solo el nombre -->
         <span class="logo-marca" aria-hidden="true">TS</span>
         <span class="logo-texto">TANO<span>SOFT</span></span>
-      </a>
+      </a>      
+      
+      
+      <!-- Botón hamburguesa: solo se ve en pantallas pequeñas (lo controla el CSS) -->
+      <!-- aria-expanded: avisa a los lectores de pantalla si el menú está abierto o cerrado -->
+      <!-- aria-controls: indica qué elemento controla (el que tiene id="menu") -->
+      <button class="hamburguesa" id="boton-menu" type="button"
+              aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      
+
+
 
       <!-- Lista de enlaces. Cada href="#algo" apunta a una sección con ese id -->
       <ul class="menu" id="menu">
