@@ -20,6 +20,9 @@
   /* Medidas que se repiten */
   --ancho-maximo: 1100px;
   --radio: 14px;
+  --acento-claro: #e8708a;
+  --rosa-suave: #f2b5c3;
+  --mono: ui-monospace, "Cascadia Code", Consolas, "Courier New", monospace;
 }
 
 
@@ -269,3 +272,252 @@ button:focus-visible {
 .marcador:nth-child(even) { background: var(--fondo-profundo); }  /* alterna el fondo para distinguirlas */
 .marcador h2 { margin-bottom: 0.5rem; }
 .marcador p { color: var(--texto-suave); }
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;     /* centra el contenido verticalmente */
+  padding: 7rem 0 4rem;    /* el espacio de arriba evita que la barra fija tape el contenido */
+  /* Tres fondos apilados, de arriba hacia abajo:
+     1. un resplandor vino oscuro arriba a la izquierda
+     2. un resplandor rojo vino suave abajo a la derecha
+     3. un degradado base de negro a gris oscuro
+     Los dos primeros terminan en "transparent", así se funden con el tercero. */
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(94, 1, 20, 0.6), transparent 70%),
+    radial-gradient(circle at 85% 85%, rgba(161, 23, 53, 0.25), transparent 55%),
+    linear-gradient(180deg, var(--fondo-profundo), var(--fondo));
+}
+
+.hero-interior { width: min(100% - 2rem, var(--ancho-maximo)); }
+.hero-contenido { max-width: 640px; }
+
+/* El lema: letras pequeñas, mayúsculas y separadas */
+.hero-lema {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  margin-bottom: 1.4rem;
+  border: 1px solid rgba(207, 204, 205, 0.25);
+  border-radius: 999px;
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  /* clamp(mínimo, ideal, máximo): el tamaño crece con el ancho de la pantalla,
+     pero nunca baja de 2.2rem ni pasa de 3.8rem */
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.12;
+  margin-bottom: 1.2rem;
+}
+
+/* Efecto "resaltador": una franja vino detrás de la palabra, sin tocar el color
+   de la letra (el texto sigue claro, así se lee bien) */
+.resaltado {
+  background: linear-gradient(transparent 62%, rgba(161, 23, 53, 0.75) 62%);
+  padding: 0 0.15em;
+}
+
+.hero-descripcion {
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+  max-width: 54ch;   /* "ch" = ancho de un carácter: limita el renglón a unos 54 caracteres */
+  margin-bottom: 2rem;
+}
+
+.hero-botones { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* Botón secundario: transparente con borde, para que el principal destaque más */
+.boton-secundario {
+  background: transparent;
+  border: 1px solid var(--texto-suave);
+  color: var(--texto);
+}
+.boton-secundario:hover {
+  background: rgba(243, 238, 239, 0.08);
+  box-shadow: none;
+}
+
+/* ---------- INDICADORES ---------- */
+.indicadores {
+  background: var(--fondo);
+  border-top: 1px solid rgba(207, 204, 205, 0.12);
+  border-bottom: 1px solid rgba(207, 204, 205, 0.12);
+}
+.indicadores-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1.4rem 0;
+  list-style: none;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+/* Un puntito rojo vino antes de cada indicador, hecho solo con CSS */
+.indicadores-lista li::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0.6rem;
+  border-radius: 50%;
+  background: var(--acento);
+}
+
+/* ---------- ENTRADA SUAVE DEL HERO ---------- */
+/* Al cargar la página, el contenido sube y aparece poco a poco */
+@keyframes subir {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-contenido { animation: subir 0.8s ease both; }
+
+/* Quien prefiere menos movimiento ve el hero aparecer sin animación */
+@media (prefers-reduced-motion: reduce) {
+  .hero-contenido { animation: none; }
+}
+
+/* ---------- HERO: DOS COLUMNAS ---------- */
+.hero-interior {
+  display: grid;
+  /* minmax(0, ...) deja que las columnas se encojan: sin esto, una línea de
+     código larga podría ensanchar la columna y romper el diseño */
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3rem;
+}
+
+/* ---------- VENTANA DE CÓDIGO ---------- */
+/* perspective: da profundidad para que el giro 3D de la ventana se vea real */
+.hero-visual {
+  perspective: 900px;
+  animation: subir 0.8s ease 0.25s both;   /* entra con el hero, un poco después */
+}
+
+.ventana-codigo {
+  /* Las variables --rx y --ry las cambia JavaScript según la posición del mouse */
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.15s ease-out;
+
+  background: rgba(10, 10, 10, 0.82);
+  border: 1px solid rgba(207, 204, 205, 0.18);
+  border-radius: var(--radio);
+  /* dos sombras: una negra de profundidad y un resplandor vino alrededor */
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 80px rgba(161, 23, 53, 0.22);
+  overflow: hidden;   /* recorta lo que se salga de las esquinas redondeadas */
+}
+
+/* Barra superior */
+.ventana-barra {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--gris-oscuro);
+  border-bottom: 1px solid rgba(207, 204, 205, 0.12);
+}
+.puntos { display: flex; gap: 6px; }
+.puntos i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gris-claro);
+  opacity: 0.35;
+}
+.puntos i:first-child { background: var(--acento); opacity: 1; }
+
+/* Pestañas */
+.pestanas { display: flex; gap: 0.25rem; overflow-x: auto; }
+.pestana {
+  padding: 0.3rem 0.7rem;
+  background: transparent;
+  color: var(--texto-suave);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.pestana:hover { background: rgba(243, 238, 239, 0.08); color: var(--texto); }
+.pestana.activa { background: rgba(161, 23, 53, 0.35); color: var(--texto); }
+
+/* Zona donde se escribe el código */
+.codigo {
+  padding: 1.1rem 1rem 1.3rem;
+  min-height: 17.5rem;   /* alto fijo: así la ventana no crece mientras se escribe */
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  white-space: pre;      /* respeta los espacios y la sangría del código */
+  counter-reset: linea;  /* empieza el contador de números de línea */
+}
+.linea { display: block; counter-increment: linea; }
+/* El número de cada línea, generado solo con CSS */
+.linea::before {
+  content: counter(linea);
+  display: inline-block;
+  width: 1.6em;
+  margin-right: 1.2em;
+  text-align: right;
+  color: var(--texto-suave);
+  opacity: 0.4;
+  user-select: none;
+}
+
+/* Colores del código */
+.t-p    { color: var(--texto-suave); }
+.t-tx   { color: var(--texto); }
+.t-tag  { color: var(--acento-claro); }
+.t-attr { color: var(--texto); }
+.t-str  { color: var(--rosa-suave); }
+.t-com  { color: var(--texto-suave); opacity: 0.6; font-style: italic; }
+
+/* ---------- LETRAS ANIMADAS ---------- */
+/* Cada letra aparece "cayendo" desde arriba, grande y con un destello rojo vino
+   que se apaga al asentarse */
+.letra {
+  display: inline-block;   /* hace falta para que transform funcione sobre un <span> */
+  animation: letra-entra 0.4s ease-out;
+}
+@keyframes letra-entra {
+  0%   { opacity: 0; transform: translateY(6px) scale(1.5); text-shadow: 0 0 12px var(--acento-claro); }
+  100% { opacity: 1; transform: translateY(0) scale(1); text-shadow: 0 0 0 transparent; }
+}
+
+/* ---------- CURSOR PARPADEANTE ---------- */
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--acento-claro);
+  animation: parpadeo 1s steps(1) infinite;   /* steps(1): salta, no se desvanece */
+}
+@keyframes parpadeo { 50% { opacity: 0; } }
+
+/* ---------- ADAPTACIÓN A CELULAR ---------- */
+@media (max-width: 900px) {
+  .hero-interior { grid-template-columns: 1fr; }   /* una sola columna: texto arriba, ventana abajo */
+}
+@media (max-width: 520px) {
+  .puntos { display: none; }
+  .codigo { font-size: 0.75rem; }
+}
+
+/* ---------- MOVIMIENTO REDUCIDO ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual,
+  .letra,
+  .cursor { animation: none; }
+  .ventana-codigo { transition: none; }
+}

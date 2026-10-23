@@ -55,8 +55,65 @@
     <main>
     <!-- Cada <section> lleva el id que usan los enlaces del menú.
          Son marcadores: en las próximas fases se reemplazan por las secciones reales. -->
-    <section class="seccion marcador" id="inicio">
-      <div class="contenedor"><h2>Inicio</h2><p>Aquí irá el hero.</p></div>
+        <!-- HERO: la primera pantalla -->
+    <section class="hero" id="inicio">
+      <div class="contenedor hero-interior">
+
+        <div class="hero-contenido">
+          <!-- El lema oficial, como una etiqueta pequeña sobre el título -->
+          <p class="hero-lema">Desarrollamos soluciones, construimos futuro</p>
+
+          <!-- Solo debe haber UN h1 por página: es el título principal -->
+          <h1>
+            Tu negocio merece una presencia digital
+            <span class="resaltado">extraordinaria</span>
+          </h1>
+
+          <p class="hero-descripcion">
+            Creamos páginas web modernas, rápidas y funcionales para empresas y
+            emprendedores que quieren crecer, destacar y aprovechar las
+            oportunidades del mundo digital.
+          </p>
+
+          <div class="hero-botones">
+            <a href="#contacto" class="boton">Quiero mi página web</a>
+            <a href="#sobre-mi" class="boton boton-secundario">Conoce al desarrollador</a>
+          </div>
+        </div>
+
+        <!-- PASO SIGUIENTE: aquí irá la composición visual -->
+                <!-- Ventana de código: es decorativa, por eso el código va con aria-hidden -->
+        <div class="hero-visual">
+          <div class="ventana-codigo" id="ventana-codigo" role="group"
+               aria-label="Animación decorativa de código. Elige un archivo para verlo escribirse">
+
+            <!-- Barra superior: tres puntos y las pestañas de los archivos -->
+            <div class="ventana-barra">
+              <span class="puntos" aria-hidden="true"><i></i><i></i><i></i></span>
+
+              <div class="pestanas">
+                <!-- data-archivo: el nombre que usa JavaScript para saber cuál escribir -->
+                <button type="button" class="pestana activa" data-archivo="index.html" aria-pressed="true">index.html</button>
+                <button type="button" class="pestana" data-archivo="styles.css" aria-pressed="false">styles.css</button>
+                <button type="button" class="pestana" data-archivo="app.js" aria-pressed="false">app.js</button>
+              </div>
+            </div>
+
+            <!-- Aquí JavaScript va escribiendo las líneas. aria-hidden: un lector de pantalla
+                 no debe leer letra por letra una animación -->
+            <pre class="codigo" aria-hidden="true"><code id="codigo"></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Indicadores debajo del hero: solo cualidades, sin cifras ni clientes inventados -->
+    <section class="indicadores" aria-label="Cualidades de TANOSOFT">
+      <ul class="contenedor indicadores-lista">
+        <li>Diseño adaptable a cualquier pantalla</li>
+        <li>Desarrollo personalizado</li>
+        <li>Soluciones orientadas a cada negocio</li>
+      </ul>
     </section>
 
     <section class="seccion marcador" id="servicios">
